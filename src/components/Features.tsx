@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import { bookType } from "@/types";
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 import FeaturesBook from "./FeaturesBook";
 import { Playfair_Display } from "next/font/google";
 import Link from "next/link";
+import Autoplay from "embla-carousel-autoplay";
 
 const play = Playfair_Display({
   weight: ["600", "800"],
@@ -23,7 +25,11 @@ export default function Features({ books, heading, link }: Props) {
           {link}
         </Link>
       </div>
-      <Carousel className="bg-[red] md:w-[100%] md:h-[80vh]">
+      <Carousel
+        opts={{ loop: true }}
+        plugins={[Autoplay({ delay: 3000 })]}
+        className="bg-[red] md:w-[100%] md:h-[80vh]"
+      >
         <CarouselContent>
           {books.map((book) => (
             <CarouselItem key={book.id}>
